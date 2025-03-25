@@ -1,4 +1,7 @@
 import flet as ft
+from flet.core.text_style import TextThemeStyle
+import logging
+
 
 def main(page: ft.Page):
     # Set the page title and initial configurations
@@ -8,7 +11,8 @@ def main(page: ft.Page):
     # Placeholder for the main content that will update based on navigation
     content = ft.Column(
         controls=[
-            ft.Text("Welcome to My Portfolio!", style="headlineMedium")
+            ft.Text("Welcome to My Portfolio!", style=TextThemeStyle.HEADLINE_MEDIUM),
+            ft.Text("This is the homepage of your portfolio website.")
         ],
         expand=True,
     )
@@ -16,24 +20,24 @@ def main(page: ft.Page):
     # Navigation click handler to update content area
     def nav_click(e):
         # Use the data property to identify which navigation option was clicked
-        if e.control.data == "home":
+        if e.control.selected_index == 0:
             content.controls = [
-                ft.Text("Welcome to My Portfolio!", style="headlineMedium"),
+                ft.Text("Welcome to My Portfolio!", style=TextThemeStyle.HEADLINE_MEDIUM),
                 ft.Text("This is the homepage of your portfolio website.")
             ]
-        elif e.control.data == "about":
+        elif e.control.selected_index == 1:
             content.controls = [
-                ft.Text("About Me", style="headlineMedium"),
+                ft.Text("About Me", style=TextThemeStyle.HEADLINE_MEDIUM),
                 ft.Text("A brief introduction about yourself, your background, and skills.")
             ]
-        elif e.control.data == "projects":
+        elif e.control.selected_index == 2:
             content.controls = [
-                ft.Text("Projects", style="headlineMedium"),
+                ft.Text("Projects", style=TextThemeStyle.HEADLINE_MEDIUM),
                 ft.Text("List or showcase your projects here with images, descriptions, and links.")
             ]
-        elif e.control.data == "contact":
+        elif e.control.selected_index == 3:
             content.controls = [
-                ft.Text("Contact", style="headlineMedium"),
+                ft.Text("Contact",  style=TextThemeStyle.HEADLINE_MEDIUM),
                 ft.Text("Include your contact information or a contact form here.")
             ]
         # Refresh the content area
@@ -44,10 +48,10 @@ def main(page: ft.Page):
         selected_index=0,
         label_type=ft.NavigationRailLabelType.ALL,
         destinations=[
-            ft.NavigationRailDestination(icon=ft.icons.HOME, label="Home", data="home"),
-            ft.NavigationRailDestination(icon=ft.icons.INFO, label="About", data="about"),
-            ft.NavigationRailDestination(icon=ft.icons.WORK, label="Projects", data="projects"),
-            ft.NavigationRailDestination(icon=ft.icons.CONTACT_MAIL, label="Contact", data="contact")
+            ft.NavigationRailDestination(icon=ft.Icons.HOME, label="Home", data="home"),
+            ft.NavigationRailDestination(icon=ft.Icons.INFO, label="About", data="about"),
+            ft.NavigationRailDestination(icon=ft.Icons.WORK, label="Projects", data="projects"),
+            ft.NavigationRailDestination(icon=ft.Icons.CONTACT_MAIL, label="Contact", data="contact")
         ],
         on_change=lambda e: nav_click(e),
     )
@@ -65,5 +69,5 @@ def main(page: ft.Page):
     page.add(layout)
 
 # Run the Flet app
-ft.app(target=main)
+ft.app(target=main, view=ft.WEB_BROWSER)
 
