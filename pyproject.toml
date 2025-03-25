@@ -26,16 +26,16 @@ company = "Flet"
 # copyright text to display in about app dialogs
 copyright = "Copyright (C) 2025 by Flet"
 
-[tool.flet.app]
-path = "src"
+#[tool.flet.app]
+#path = "src"
 
-[tool.uv]
-dev-dependencies = [
-    "flet[all]==0.27.6",
-]
+#[tool.uv]
+#dev-dependencies = [
+#    "flet[all]==0.27.6",
+#]
 
-[tool.poetry]
-package-mode = false
-
-[tool.poetry.group.dev.dependencies]
-flet = {extras = ["all"], version = "0.27.6"}
+#[tool.poetry]
+#package-mode = false
+#
+#[tool.poetry.group.dev.dependencies]
+#flet = {extras = ["all"], version = "0.27.6"}
